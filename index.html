@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="FlexiLayout Studio - A visual CSS layout generator built with pure HTML, CSS, and JavaScript."
+    />
+    <title>FlexiLayout Studio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar left-sidebar">
+        <div class="brand-card panel">
+          <div class="brand-top">
+            <div class="brand-logo" aria-hidden="true"></div>
+            <div>
+              <h1>FlexiLayout Studio</h1>
+              <p>Visual CSS layout generator</p>
+            </div>
+          </div>
+        </div>
+
+        <section class="panel">
+          <div class="section-head">
+            <h2>Layout Engine</h2>
+            <button class="ghost-btn small" id="randomizeBtn">Randomize</button>
+          </div>
+
+          <div class="segmented" role="tablist" aria-label="Layout Mode">
+            <button
+              class="segment active"
+              id="modeFlexBtn"
+              data-mode="flex"
+              aria-selected="true"
+            >
+              Flex
+            </button>
+            <button
+              class="segment"
+              id="modeGridBtn"
+              data-mode="grid"
+              aria-selected="false"
+            >
+              Grid
+            </button>
+          </div>
+
+          <div class="field">
+            <label for="containerWidth">Container Width</label>
+            <input type="text" id="containerWidth" value="100%" />
+          </div>
+
+          <div class="field">
+            <label for="containerHeight">Container Height</label>
+            <input type="text" id="containerHeight" value="520px" />
+          </div>
+
+          <div class="field">
+            <label for="itemCount">Items</label>
+            <div class="range-row">
+              <input type="range" id="itemCount" min="1" max="16" value="8" />
+              <span id="itemCountValue">8</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel controls-panel" id="flexControls">
+          <div class="section-head">
+            <h2>Flex Controls</h2>
+          </div>
+
+          <div class="field">
+            <label for="flexDirection">Direction</label>
+            <select id="flexDirection">
+              <option value="row">row</option>
+              <option value="row-reverse">row-reverse</option>
+              <option value="column">column</option>
+              <option value="column-reverse">column-reverse</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="justifyContent">Justify Content</label>
+            <select id="justifyContent">
+              <option value="flex-start">flex-start</option>
+              <option value="center">center</option>
+              <option value="flex-end">flex-end</option>
+              <option value="space-between">space-between</option>
+              <option value="space-around">space-around</option>
+              <option value="space-evenly">space-evenly</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="alignItems">Align Items</label>
+            <select id="alignItems">
+              <option value="stretch">stretch</option>
+              <option value="flex-start">flex-start</option>
+              <option value="center">center</option>
+              <option value="flex-end">flex-end</option>
+              <option value="baseline">baseline</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="flexWrap">Wrap</label>
+            <select id="flexWrap">
+              <option value="wrap">wrap</option>
+              <option value="nowrap">nowrap</option>
+              <option value="wrap-reverse">wrap-reverse</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="gapSize">Gap</label>
+            <input type="text" id="gapSize" value="16px" />
+          </div>
+        </section>
+
+        <section class="panel controls-panel hidden" id="gridControls">
+          <div class="section-head">
+            <h2>Grid Controls</h2>
+          </div>
+
+          <div class="field">
+            <label for="gridColumns">Columns</label>
+            <input type="text" id="gridColumns" value="repeat(4, 1fr)" />
+          </div>
+
+          <div class="field">
+            <label for="gridRows">Rows</label>
+            <input
+              type="text"
+              id="gridRows"
+              value="repeat(2, minmax(110px, 1fr))"
+            />
+          </div>
+
+          <div class="field">
+            <label for="gridAutoFlow">Auto Flow</label>
+            <select id="gridAutoFlow">
+              <option value="row">row</option>
+              <option value="column">column</option>
+              <option value="dense">dense</option>
+              <option value="row dense">row dense</option>
+              <option value="column dense">column dense</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="gridJustifyItems">Justify Items</label>
+            <select id="gridJustifyItems">
+              <option value="stretch">stretch</option>
+              <option value="start">start</option>
+              <option value="center">center</option>
+              <option value="end">end</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="gridAlignItems">Align Items</label>
+            <select id="gridAlignItems">
+              <option value="stretch">stretch</option>
+              <option value="start">start</option>
+              <option value="center">center</option>
+              <option value="end">end</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="gridGap">Gap</label>
+            <input type="text" id="gridGap" value="16px" />
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-head">
+            <h2>Box Model</h2>
+          </div>
+
+          <div class="field">
+            <label for="paddingSize">Padding</label>
+            <input type="text" id="paddingSize" value="20px" />
+          </div>
+
+          <div class="field">
+            <label for="borderRadius">Radius</label>
+            <input type="text" id="borderRadius" value="24px" />
+          </div>
+
+          <div class="field">
+            <label for="borderWidth">Border Width</label>
+            <input type="text" id="borderWidth" value="1px" />
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-head">
+            <h2>Presets</h2>
+          </div>
+          <div class="preset-grid">
+            <button class="preset-btn" data-preset="hero">Hero Layout</button>
+            <button class="preset-btn" data-preset="gallery">
+              Gallery Grid
+            </button>
+            <button class="preset-btn" data-preset="dashboard">
+              Dashboard
+            </button>
+            <button class="preset-btn" data-preset="cards">Card Rail</button>
+          </div>
+        </section>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar panel">
+          <div class="topbar-left">
+            <div class="status-dot"></div>
+            <span>Live Preview Active</span>
+          </div>
+          <div class="topbar-actions">
+            <button class="ghost-btn" id="toggleThemeBtn">Toggle Theme</button>
+            <button class="ghost-btn" id="copyCssBtn">Copy CSS</button>
+            <button class="ghost-btn" id="copyHtmlBtn">Copy HTML</button>
+            <button class="primary-btn" id="downloadJsonBtn">
+              Export JSON
+            </button>
+          </div>
+        </header>
+
+        <section class="preview-stage panel">
+          <div class="preview-toolbar">
+            <div class="preview-title-wrap">
+              <h2>Canvas Preview</h2>
+              <p>Build, inspect, and export responsive layouts</p>
+            </div>
+            <div class="device-switch">
+              <button class="device-btn active" data-device="desktop">
+                Desktop
+              </button>
+              <button class="device-btn" data-device="tablet">Tablet</button>
+              <button class="device-btn" data-device="mobile">Mobile</button>
+            </div>
+          </div>
+
+          <div class="preview-frame" id="previewFrame">
+            <div
+              class="layout-preview"
+              id="layoutPreview"
+              aria-live="polite"
+            ></div>
+          </div>
+        </section>
+
+        <section class="bottom-grid">
+          <div class="panel output-panel">
+            <div class="section-head">
+              <h2>Generated CSS</h2>
+              <button class="ghost-btn small" id="formatCssBtn">Refresh</button>
+            </div>
+            <pre id="cssOutput" class="code-block"></pre>
+          </div>
+
+          <div class="panel output-panel">
+            <div class="section-head">
+              <h2>Generated HTML</h2>
+              <button class="ghost-btn small" id="formatHtmlBtn">
+                Refresh
+              </button>
+            </div>
+            <pre id="htmlOutput" class="code-block"></pre>
+          </div>
+        </section>
+      </main>
+
+      <aside class="sidebar right-sidebar">
+        <section class="panel">
+          <div class="section-head">
+            <h2>Visual Theme</h2>
+          </div>
+
+          <div class="field">
+            <label for="bgStyle">Canvas Surface</label>
+            <select id="bgStyle">
+              <option value="aurora">Aurora</option>
+              <option value="midnight">Midnight</option>
+              <option value="sunset">Sunset</option>
+              <option value="frost">Frost</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="itemStyle">Item Style</label>
+            <select id="itemStyle">
+              <option value="gradient">Gradient</option>
+              <option value="glass">Glass</option>
+              <option value="solid">Solid</option>
+              <option value="outline">Outline</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="primaryHue">Primary Hue</label>
+            <div class="range-row">
+              <input
+                type="range"
+                id="primaryHue"
+                min="0"
+                max="360"
+                value="265"
+              />
+              <span id="primaryHueValue">265</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="accentHue">Accent Hue</label>
+            <div class="range-row">
+              <input
+                type="range"
+                id="accentHue"
+                min="0"
+                max="360"
+                value="190"
+              />
+              <span id="accentHueValue">190</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-head">
+            <h2>Item Sizing</h2>
+          </div>
+
+          <div class="field">
+            <label for="itemMinWidth">Min Width</label>
+            <input type="text" id="itemMinWidth" value="120px" />
+          </div>
+
+          <div class="field">
+            <label for="itemMinHeight">Min Height</label>
+            <input type="text" id="itemMinHeight" value="110px" />
+          </div>
+
+          <div class="field">
+            <label for="itemPadding">Item Padding</label>
+            <input type="text" id="itemPadding" value="16px" />
+          </div>
+
+          <div class="field">
+            <label for="itemRadius">Item Radius</label>
+            <input type="text" id="itemRadius" value="18px" />
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-head">
+            <h2>Utilities</h2>
+          </div>
+          <div class="utility-list">
+            <button class="ghost-btn utility-btn" id="resetBtn">
+              Reset to Default
+            </button>
+            <button class="ghost-btn utility-btn" id="saveStateBtn">
+              Save Locally
+            </button>
+            <button class="ghost-btn utility-btn" id="loadStateBtn">
+              Load Saved
+            </button>
+            <button class="ghost-btn utility-btn" id="clearStateBtn">
+              Clear Saved
+            </button>
+          </div>
+        </section>
+
+        <section class="panel stats-panel">
+          <div class="section-head">
+            <h2>Layout Snapshot</h2>
+          </div>
+          <div class="stats-list">
+            <div class="stat-card">
+              <span class="stat-label">Mode</span>
+              <strong id="statMode">Flex</strong>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Items</span>
+              <strong id="statItems">8</strong>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Gap</span>
+              <strong id="statGap">16px</strong>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Surface</span>
+              <strong id="statSurface">Aurora</strong>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <template id="previewItemTemplate">
+      <div class="preview-item">
+        <span class="item-index"></span>
+        <span class="item-meta">Component</span>
+      </div>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
